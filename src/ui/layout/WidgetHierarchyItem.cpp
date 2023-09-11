@@ -70,7 +70,7 @@ void WidgetHierarchyItem::refreshOrderingData(bool resort, bool recursive)
 
     if (!_manipulator || !_manipulator->getWidget()) return;
 
-    setData(_manipulator->getWidgetIndexInParent(), Qt::UserRole + 1);
+    setData(static_cast<uint>(_manipulator->getWidgetIndexInParent()), Qt::UserRole + 1);
 
     if (recursive)
     {

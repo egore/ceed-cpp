@@ -11,6 +11,7 @@
 #include "qdom.h"
 #include "qpainter.h"
 #include "qlistwidget.h"
+#include <math.h>
 
 ImageEntry::ImageEntry(QGraphicsItem* parent)
     : ResizableRectItem(parent)

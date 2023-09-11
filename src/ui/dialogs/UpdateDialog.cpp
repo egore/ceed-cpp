@@ -3,6 +3,7 @@
 #include "src/Application.h"
 #include "src/util/Settings.h"
 #include "src/util/Utils.h"
+#include "src/util/descriptive_exception.h"
 #include <qjsonobject.h>
 #include <qjsonarray.h>
 #include <qevent.h>
@@ -187,13 +188,13 @@ void UpdateDialog::downloadUpdate()
         if (file.open(QFile::WriteOnly))
         {
             if (!file.seek(_releaseAssetSize - 1))
-                throw std::exception("Can't reserve enough space in the temporary file");
+                throw descriptive_exception("Can't reserve enough space in the temporary file");
             file.write("\0", 1);
             file.close();
         }
         else
         {
-            throw std::exception("Can't create temporary file");
+            throw descriptive_exception("Can't create temporary file");
         }
     }
     catch (const std::exception& e)

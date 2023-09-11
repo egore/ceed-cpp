@@ -24,7 +24,7 @@ protected:
 
     static float normalizeAngle(float angle)
     {
-        angle = std::fmodf(angle, 360.f);
+        angle = fmodf(angle, 360.f);
         if (angle < 0.f) angle += 360.f;
         return angle;
     }
@@ -44,9 +44,9 @@ protected:
     {
         // Z axis goes through the screen, 2D objects are rotated around it
 #ifdef GLM_FORCE_RADIANS
-        actualValue = glm::angleAxis(glm::radians(normalizeAngle(baseValue)), 0.f, 0.f, 1.f);
+        actualValue = glm::angleAxis(glm::radians(normalizeAngle(baseValue)), glm::vec3(0.f, 0.f, 1.f));
 #else
-        actualValue = glm::angleAxis(normalizeAngle(baseValue), 0.f, 0.f, 1.f);
+        actualValue = glm::angleAxis(normalizeAngle(baseValue), glm::vec3(0.f, 0.f, 1.f));
 #endif
         return true;
     }

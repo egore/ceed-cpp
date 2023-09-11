@@ -4,6 +4,7 @@
 #include "src/ui/imageset/ImageEntry.h"
 #include "src/ui/imageset/ImageOffsetMark.h"
 #include "src/ui/imageset/ImagesetEditorDockWidget.h"
+#include <math.h>
 
 ImagesetMoveCommand::ImagesetMoveCommand(ImagesetVisualMode& visualMode, std::vector<Record>&& imageRecords)
     : _visualMode(visualMode)

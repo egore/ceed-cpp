@@ -4,6 +4,7 @@
 #include "src/util/SettingsSection.h"
 #include "src/util/SettingsEntry.h"
 #include "src/util/Utils.h"
+#include "src/util/descriptive_exception.h"
 #include "src/editors/imageset/ImagesetEditor.h"
 #include "src/editors/layout/LayoutEditor.h"
 #include "src/editors/looknfeel/LookNFeelEditor.h"
@@ -271,7 +272,7 @@ void Application::checkForUpdates(bool manual, const std::function<void()>& cb)
             if (!latestVersionStr.isEmpty() && latestVersionStr[0] == 'v')
                 latestVersionStr = latestVersionStr.mid(1);
 
-            if (latestVersionStr.isEmpty()) throw std::exception("Latest release version string is empty");
+            if (latestVersionStr.isEmpty()) throw descriptive_exception("Latest release version string is empty");
 
             QVersionNumber latestVersion = QVersionNumber::fromString(latestVersionStr);
             QVersionNumber currentVersion = QVersionNumber::fromString(applicationVersion());

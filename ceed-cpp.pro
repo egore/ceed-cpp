@@ -26,7 +26,7 @@ include(3rdParty/QtnProperty/QtnProperty/QtnProperty.pri)
 include(3rdParty/zlib/zlib.pri)
 include(3rdParty/minizip-ng/minizip-ng.pri)
 
-CONFIG += c++11
+CONFIG += c++14
 
 SOURCES += \
     src/cegui/CEGUIUtils.cpp \
@@ -222,7 +222,8 @@ HEADERS += \
     src/ui/XMLSyntaxHighlighter.h \
     src/ui/layout/WidgetTypeTreeWidget.h \
     src/ui/layout/CreateWidgetDockWidget.h \
-    src/ui/layout/WidgetHierarchyItem.h
+    src/ui/layout/WidgetHierarchyItem.h \
+    src/util/descriptive_exception.h
 
 FORMS += \
     ui/CEGUIDebugInfo.ui \
@@ -257,7 +258,11 @@ INCLUDEPATH += $$PWD/3rdParty/QtnProperty/QtnProperty
 INCLUDEPATH += $$PWD/3rdParty/CEGUI/include $$PWD/3rdParty/CEGUI/dependencies/include
 CONFIG(debug, debug|release) {
     CEGUI_BIN_DIR = $$PWD/3rdParty/CEGUI/bin/debug
-    LIBS += -lCEGUIBase-9999_d -lCEGUIOpenGLRenderer-9999_d
+    win32 {
+        LIBS += -lCEGUIBase-9999_d -lCEGUIOpenGLRenderer-9999_d
+    } else {
+        LIBS += -lCEGUIBase-9999 -lCEGUIOpenGLRenderer-9999
+    }
 } else {
     CEGUI_BIN_DIR = $$PWD/3rdParty/CEGUI/bin/release
     LIBS += -lCEGUIBase-9999 -lCEGUIOpenGLRenderer-9999
@@ -268,6 +273,10 @@ LIBS += -L"$$PWD/3rdParty/CEGUI/lib" -L"$$CEGUI_BIN_DIR" # Bin is for DLL search
 
 win32 {
     LIBS += -lole32
+}
+
+linux {
+    INCLUDEPATH += /usr/include/freetype2
 }
 
 # Deployment

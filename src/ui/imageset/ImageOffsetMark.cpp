@@ -1,5 +1,6 @@
 #include "src/ui/imageset/ImageOffsetMark.h"
 #include "qcursor.h"
+#include <math.h>
 
 ImageOffsetMark::ImageOffsetMark(QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent)
